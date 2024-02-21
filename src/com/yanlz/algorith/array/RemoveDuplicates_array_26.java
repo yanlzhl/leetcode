@@ -13,6 +13,7 @@ import java.util.List;
  * 26: https://leetcode.cn/problems/remove-duplicates-from-sorted-array/  删除有序数组中的重复项
  * 83: https://leetcode.cn/problems/remove-duplicates-from-sorted-list/description/ 删除排序链表中的重复元素
  * 27: https://leetcode.cn/problems/remove-element/description/ 移除某一相同元素，返回其他不同元素的个数
+ * 283: https://leetcode.cn/problems/move-zeroes/
  */
 public class RemoveDuplicates_array_26 {
     public static void main(String[] args) {
@@ -30,8 +31,12 @@ public class RemoveDuplicates_array_26 {
 //        System.out.println(deleteDuplicates(nodeHead));
 
         // entrance of 27
-        int[] removeElement = new int[]{1,2,3,3,3,4,5,6};
-        System.out.println(removeElement(removeElement,3));
+//        int[] removeElement = new int[]{1,2,3,3,3,4,5,6};
+//        System.out.println(removeElement(removeElement,3));
+
+        // entrance of 27
+        int[] removeElement = new int[]{1,2,0,0,0,4,5,6};
+        moveZeroes(removeElement);
     }
 
     /**
@@ -134,6 +139,8 @@ public class RemoveDuplicates_array_26 {
 
         while (fast < nums.length){
            if (nums[fast] != targetValue){
+               // 注意这里和有序数组去重的解法有一个细节差异，我们这里是先给 nums[slow] 赋值然后再给 slow++，
+               // 这样可以保证 nums[0..slow-1] 是不包含值为 val 的元素的，最后的结果数组长度就是 slow。
                nums[slow] = nums[fast];
                slow++;
            }
@@ -146,6 +153,22 @@ public class RemoveDuplicates_array_26 {
 //        }
 
         return slow;
+    }
+
+    /**
+     * 一般不会想到以这种方式来达成，以后再看看是否会想到
+     *
+     */
+    static void moveZeroes(int[] nums) {
+        // 去除 nums 中的所有 0，返回不含 0 的数组长度
+        int p = removeElement(nums, 0);
+        // 将 nums[p..] 的元素赋值为 0
+        for (; p < nums.length; p++) {
+            nums[p] = 0;
+        }
+        for (int i = 0; i < nums.length; i++) {
+            System.out.println(nums[i]);
+        }
     }
 
 }
