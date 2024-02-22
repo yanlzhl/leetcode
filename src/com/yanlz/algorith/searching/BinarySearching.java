@@ -21,8 +21,8 @@ public class BinarySearching {
         //Arrays.stream(twoSum(numbers,18)).forEach(n-> System.out.println(n));
 
         //344
-        int[] numbers = new int[]{2,7,11,16};
-        reverseArray(numbers);
+//        reverseArray(new int[]{2,7,11,16});
+        reverseArray(new char[]{'a','b','c','d'});
     }
 
     /**
@@ -92,5 +92,49 @@ public class BinarySearching {
         }
         Arrays.stream(numbers).forEach(n-> System.out.println(n));
     }
+
+    /**
+     * 344 https://leetcode.cn/problems/reverse-string/
+     * @param numbers
+     */
+    public static void reverseArray(char[] numbers){
+        int left = 0;
+        int right = numbers.length-1;
+        while (left < right){
+            char temp = numbers[left];
+            numbers[left] = numbers[right];
+            numbers[right] = temp;
+            left++;
+            right--;
+        }
+        for (char c : numbers) {
+            System.out.print(c + " ");
+        }
+    }
+
+    /**
+     * 回文串判断
+     *
+     * @param s 回文串
+     * @return
+     */
+    public static boolean isPalindrome(String s) {
+        char[] charArray =  s.toCharArray();
+
+        int left = 0;
+        int right = charArray.length-1;
+        while (left < right){
+            if (charArray[left] != charArray[right]){
+                return false;
+            }
+
+            left++;
+            right--;
+        }
+
+        return true;
+    }
+
+
 
 }
