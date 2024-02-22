@@ -8,6 +8,7 @@ import java.util.Arrays;
  * @description: Binary Searching
  * 二分查找是左右指针的常用算法体现
  *  167 https://leetcode.cn/problems/two-sum-ii-input-array-is-sorted/description/
+ *  344 https://leetcode.cn/problems/reverse-string/
  */
 public class BinarySearching {
     public static void main(String[] args) {
@@ -15,8 +16,13 @@ public class BinarySearching {
 //        int[] numbers = new int[]{1,2,3,4,5,6,7,8,9};
 //        System.out.println(binarySearching(numbers,9));
 
-        int[] numbers = new int[]{2,7,11,15};
-        Arrays.stream(twoSum(numbers,22)).forEach(n-> System.out.println(n));
+        //167
+        //int[] numbers = new int[]{2,7,11,16};
+        //Arrays.stream(twoSum(numbers,18)).forEach(n-> System.out.println(n));
+
+        //344
+        int[] numbers = new int[]{2,7,11,16};
+        reverseArray(numbers);
     }
 
     /**
@@ -45,6 +51,9 @@ public class BinarySearching {
 
     /**
      * 167 https://leetcode.cn/problems/two-sum-ii-input-array-is-sorted/
+     * 只要数组有序，就应该想到双指针技巧
+     * 一个方法团灭 nSum 问题  https://labuladong.online/algo/practice-in-action/nsum/
+     *
      * @param numbers numbers list
      * @param target target value
      * @return
@@ -66,4 +75,22 @@ public class BinarySearching {
 
         return new int[]{-1,-1};
     }
+
+    /**
+     * 344 https://leetcode.cn/problems/reverse-string/
+     * @param numbers
+     */
+    public static void reverseArray(int[] numbers){
+        int left = 0;
+        int right = numbers.length-1;
+        while (left < right){
+            int temp = numbers[left];
+            numbers[left] = numbers[right];
+            numbers[right] = temp;
+            left++;
+            right--;
+        }
+        Arrays.stream(numbers).forEach(n-> System.out.println(n));
+    }
+
 }
