@@ -9,6 +9,7 @@ import java.util.Arrays;
  * 二分查找是左右指针的常用算法体现
  *  167 https://leetcode.cn/problems/two-sum-ii-input-array-is-sorted/description/
  *  344 https://leetcode.cn/problems/reverse-string/
+ *  5 https://leetcode.cn/problems/longest-palindromic-substring/description/
  */
 public class BinarySearching {
     public static void main(String[] args) {
