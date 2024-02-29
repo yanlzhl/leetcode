@@ -217,6 +217,43 @@ public class SlidingWindow {
         return result;
     }
 
+    /**
+     * 无重复字符的最长子串
+     * https://leetcode.cn/problems/longest-substring-without-repeating-characters/description/
+     *
+     * 思想：
+     * right来增加窗口大小，同时判断是否存在重复字符即>1，如果存在,则：
+     * 再while循环中通过left递增来缩小窗口，直到窗口中没有重复的字符，此时记录最长的长度。
+     * 重复上面步骤，直到right等于窗口的大小
+     *
+     * 重点是去重的思路要注意，也就是确保窗口中无重复字符的思路，通过right来增加，此时right的字符是变量，然后触发left递增直到去掉right带来的重复不再为止（window中无重复字符）
+     * 只要每次确保新增的字符无重复，之后增加的都会无重复
+     *
+     * abcabcbb
+     * abcbbcbb
+     * @param string
+     * @return
+     */
+    public static int lengthOfLongestSubstring(String string){
+        int length = 0;
+        int right = 0, left = 0;
+        Map<Character,Integer> window = new HashMap<>();
+        while (right < string.length()){
+            Character c = string.charAt(right);
+            right++;
+            window.put(c,window.getOrDefault(c,0) + 1);
+
+            if (window.get(c) >1){
+                char leftChar = string.charAt(left);
+                left++;
+                window.put(leftChar,window.get(c) - 1);
+            }
+            //此行代码放外面而不是if中，说明此时window中已经没有重复的字符 可以进行计算此时的window长度
+            length = Math.max(length,right - left);
+        }
+        return length;
+    }
+
 
 
 
