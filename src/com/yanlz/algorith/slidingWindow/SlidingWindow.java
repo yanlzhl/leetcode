@@ -16,9 +16,9 @@ public class SlidingWindow {
 //        System.out.println(minWindow("ADOBECODEBANC",  "ABC"));
 //        System.out.println(minWindow("ABDCABC",  "ABC"));
 //        System.out.println(minWindow("BBACF",  "ABBC"));
-//        System.out.println(finePermutationInString("BBAFF","AF"));
+        System.out.println(finePermutationInString("BBAFDC","AFCD"));
 //        System.out.println(findAnagrams("abab","ab"));
-        System.out.println(lengthOfLongestSubstring("abcdabcdebb"));
+//        System.out.println(lengthOfLongestSubstring("abcdabcdebb"));
 
     }
 
@@ -47,6 +47,8 @@ public class SlidingWindow {
             right++;
             if (need.containsKey(c)){
                 window.put(c, window.getOrDefault(c,0)+1);
+                //窗口缩小检测一定是从某一个right的加入且覆盖了目标字符串开始，
+                // 因此当一个need中的字符数等于window中某一个字符是便开始操作
                 if (window.get(c).equals(need.get(c))){
                     valid++;
                 }
@@ -55,6 +57,8 @@ public class SlidingWindow {
             //ADOBECODBBANC  DOB  1，3
 
             //左侧窗口缩小的条件
+            //窗口缩小检测一定是从某一个right的加入且覆盖了目标字符串开始，
+            // 因此当一个need中的字符数等于window中某一个字符是便开始操作
             while (valid == need.size()){  //此处停止条件需要注意 别写成if
                 //此处记录最小子串口对位置
                 if (right - left < length){
@@ -154,11 +158,8 @@ public class SlidingWindow {
     }
 
     /**
-     * 字符串的排列
-     * 2个问题：
-     * 何时停止右边窗口的增加？
-     *  当窗口的长度等于targetStr的长度，相当于是等长的窗口
-     * 如何停止左边窗口的增加？
+     * 找到字符串中所有字母异位词
+     * 相当于把所有包括的情况都考虑
      */
     public static List<Integer> findAnagrams(String string, String targetStr){
         List<Integer> result= new ArrayList<Integer>();

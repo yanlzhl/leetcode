@@ -8,6 +8,8 @@ import java.util.List;
  * remove-duplicates
  * 26 83 27 283 快慢指针
  *
+ * https://labuladong.online/algo/essential-technique/array-two-pointers-summary/#%E4%B8%80%E3%80%81%E5%BF%AB%E6%85%A2%E6%8C%87%E9%92%88%E6%8A%80%E5%B7%A7
+ *
  * @author: Yan
  * @createTime: 2024/02/21 17:32
  * @description:
@@ -34,7 +36,8 @@ public class RemoveDuplicates_array_26 {
 //        System.out.println(deleteDuplicates(nodeHead));
 
         // entrance of 27
-//        int[] removeElement = new int[]{1,2,3,3,3,4,5,6};
+//        int[] remov
+//        eElement = new int[]{1,2,3,3,3,4,5,6};
 //        System.out.println(removeElement(removeElement,3));
 
         // entrance of 27
