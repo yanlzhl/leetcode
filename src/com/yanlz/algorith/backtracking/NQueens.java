@@ -1,6 +1,12 @@
 package com.yanlz.algorith.backtracking;
 
 public class NQueens {
+
+    public static void main(String[] args) {
+        NQueens nQueens = new NQueens();
+        nQueens.cal8queens(0);
+    }
+
     int[] result = new int[8];//全局或成员变量,下标表示行,值表示queen存储在哪一列
     public void cal8queens(int row) { // 调用方式：cal8queens(0);
         if (row == 8) { // 8个棋子都放置好了，打印结果
@@ -16,7 +22,7 @@ public class NQueens {
     }
 
     private boolean isOk(int row, int column) {//判断row行column列放置是否合适
-        int leftup = column - 1, rightup = column + 1;
+        int leftup = column - 1, rightup = column + 1; // 左上、右上，只需要考虑对角线上的位置，所在的列，不需要考虑行
         for (int i = row-1; i >= 0; --i) { // 逐行往上考察每一行
             if (result[i] == column) return false; // 第i行的column列有棋子吗？
             if (leftup >= 0) { // 考察左上对角线：第i行leftup列有棋子吗？
