@@ -11,13 +11,16 @@ package com.yanlz.algorith.searching;
 public class BinarySearchingBasic {
 
     public static void main(String[] args) {
-        int[] numbers = new int[]{1,2,3,5,5,5,7,8,9};
+//        int[] numbers = new int[]{1,2,3,5,5,5,7,8,9};
+        int[] numbers = new int[]{1,2,3,4,5,6,8,9,10,11};
         BinarySearchingBasic binarySearchingBasic = new BinarySearchingBasic();
-        System.out.println(binarySearchingBasic.binary_search(numbers,9));
+        System.out.println(binarySearchingBasic.binary_search(numbers,7));
 
         System.out.println(binarySearchingBasic.left_bound(numbers,5));
 
         System.out.println(binarySearchingBasic.right_bound(numbers,5));
+
+        System.out.println(binarySearchingBasic.searchInsertPosition( new int[]{1,3,5,6},7));
     }
 
     /**
@@ -36,10 +39,16 @@ public class BinarySearchingBasic {
             } else if (nums[mid] > target) {
                 right = mid - 1;
             } else if(nums[mid] == target) {
+                System.out.println("left:"+left);
+                System.out.println("right:"+right);
                 // 直接返回
                 return mid;
             }
         }
+
+        System.out.println("-1 left:"+left);
+        System.out.println("-1 right:"+right);
+
         // 直接返回
         return -1;
     }
@@ -85,5 +94,33 @@ public class BinarySearchingBasic {
         }
         return nums[right] == target ? right : -1;
     }
+
+    /**
+     * 35 https://leetcode-cn.com/problems/search-insert-position/
+     * 二分查找的变种，找到插入位置。这个题目让自己清楚，left和right的含义，相对于target的位置，left左边的值一直保持小于target，right右边的值一直保持大于等于target。
+     * 不需要ans变量，最后直接返回left就可以了，
+     * 根据if的判断条件，left左边的值一直保持小于target，right右边的值一直保持大于等于target，如果没有找到target，而且left最终一定等于right+1。找到了target，left和right值看情况。
+     * @param nums
+     * @param target
+     * @return
+     */
+    public int searchInsertPosition(int[] nums, int target){
+        int left = 0, right = nums.length - 1;
+        while(left <= right) {
+            int mid = left + (right - left) / 2;
+            if (nums[mid] < target) {
+                left = mid + 1;
+            } else if (nums[mid] > target) {
+                right = mid - 1;
+            } else if(nums[mid] == target) {
+                // 直接返回
+                return mid;
+            }
+        }
+        // 直接返回
+        return left;
+    }
+
+
 }
 
