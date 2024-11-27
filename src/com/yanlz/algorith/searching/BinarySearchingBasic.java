@@ -1,5 +1,7 @@
 package com.yanlz.algorith.searching;
 
+import java.util.Arrays;
+
 /**
  * 二分查找 请参考 https://labuladong.online/algo/essential-technique/binary-search-framework/#%E5%9B%9B%E3%80%81%E9%80%BB%E8%BE%91%E7%BB%9F%E4%B8%80
  * 考虑了常规的二分查找，左右边界查找，比较容易记忆的是左闭右闭区间，即[left,right]。因为是闭合，taget != nums[mid]是，分别在左右边界各+1或-1，这种规律比较容易记忆。
@@ -21,6 +23,8 @@ public class BinarySearchingBasic {
         System.out.println(binarySearchingBasic.right_bound(numbers,5));
 
         System.out.println(binarySearchingBasic.searchInsertPosition( new int[]{1,3,5,6},7));
+
+        System.out.println(Arrays.toString(binarySearchingBasic.searchRange(new int[]{5,7,7,8,8,10},8)));
     }
 
     /**
@@ -119,6 +123,85 @@ public class BinarySearchingBasic {
         }
         // 直接返回
         return left;
+    }
+
+
+    int[] searchRange(int[] nums, int target) {
+        int leftBorder = getLeftBorder(nums, target);
+        int rightBorder = getRightBorder(nums, target);
+        // 情况一
+        if (leftBorder == -2 || rightBorder == -2) return new int[]{-1, -1};
+        // 情况三
+        if (rightBorder - leftBorder > 1) return new int[]{leftBorder + 1, rightBorder - 1};
+        // 情况二
+        return new int[]{-1, -1};
+    }
+
+
+    /**
+     * 和right_bound方法的思想是一样的
+     * @param nums
+     * @param target
+     * @return
+     */
+    int getRightBorder(int[] nums, int target) {
+        int left = 0;
+        int right = nums.length - 1;
+        int rightBorder = -2; // 记录一下rightBorder没有被赋值的情况
+        while (left <= right) {
+            int middle = left + ((right - left) / 2);
+            if (nums[middle] > target) {
+                right = middle - 1;
+            } else { // 寻找右边界，nums[middle] == target的时候更新left
+                left = middle + 1;
+                rightBorder = left;
+                System.out.println("rightBorder:"+rightBorder);
+            }
+        }
+        return rightBorder;
+    }
+
+    /**
+     *
+     * @param nums
+     * @param target
+     * @return
+     */
+    int getLeftBorder(int[] nums, int target) {
+        int left = 0;
+        int right = nums.length - 1;
+        int leftBorder = -2; // 记录一下leftBorder没有被赋值的情况
+        while (left <= right) {
+            int middle = left + ((right - left) / 2);
+            if (nums[middle] >= target) { // 寻找左边界，nums[middle] == target的时候更新right
+                right = middle - 1;
+                leftBorder = right;
+                System.out.println("leftBorder:"+leftBorder);
+            } else {
+                left = middle + 1;
+            }
+        }
+        return leftBorder;
+    }
+
+    /**
+     * 69 https://leetcode-cn.com/problems/sqrtx/
+     * @param x
+     * @return
+     */
+    public int mySqrt(int x) {
+        int l=0, r= x,ans = -1;
+        while(l<=r){
+            int mid = l + (r-l)/2;
+            if((long)mid*mid <=x){
+                ans= mid;
+                l = mid +1;
+            }else{
+                r = mid -1;
+            }
+
+        }
+        return ans;
     }
 
 
