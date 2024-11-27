@@ -25,6 +25,8 @@ public class BinarySearchingBasic {
         System.out.println(binarySearchingBasic.searchInsertPosition( new int[]{1,3,5,6},7));
 
         System.out.println(Arrays.toString(binarySearchingBasic.searchRange(new int[]{5,7,7,8,8,10},8)));
+
+        System.out.println(binarySearchingBasic.isPerfectSquare(16));
     }
 
     /**
@@ -202,6 +204,27 @@ public class BinarySearchingBasic {
 
         }
         return ans;
+    }
+
+    /**
+     * 367 https://leetcode-cn.com/problems/valid-perfect-square/
+     * @param num
+     * @return
+     */
+    public boolean isPerfectSquare(int num) {
+        int l=0, r= num;
+        while(l<=r){
+            int mid = l + (r-l)/2;
+            long multiResult = (long)mid * mid;
+            if(multiResult == num){
+                return true;
+            }else if ( multiResult > num){
+                r = mid -1;
+            }else if (multiResult < num){
+                l = mid +1;
+            }
+        }
+        return false;
     }
 
 
