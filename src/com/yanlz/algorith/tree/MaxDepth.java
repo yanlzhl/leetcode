@@ -42,12 +42,6 @@ class Solution {
 
     // 二叉树遍历框架
     void traverse(TreeNode root) {
-        // 示例二叉树：
-        //       3
-        //      / \
-        //     9  20
-        //    /  /  \
-        //   11 15  7
         if (root == null) {
             // 到达叶子节点
             res = Math.max(res, depth);
