@@ -7,7 +7,7 @@ package com.yanlz.algorith.tree;
  */
 class MaxDepth {
     public static void main(String[] args) {
-        Solution solution = new Solution();
+        Solution2 solution = new Solution2();
 
         // 示例二叉树：
         //       3
@@ -27,7 +27,7 @@ class MaxDepth {
     }
 }
 
-class Solution {
+class Solution2 {
 
     // 记录最大深度
     int res = 0;
