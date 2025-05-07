@@ -18,7 +18,7 @@ import java.util.concurrent.Executors;
   * | 参与者       | 等待者和执行 countDown() 者角色可以不同 | 所有参与者角色相同 (都调用await()) |
   * | 核心比喻     | 起跑发令枪 / 任务完成信号          | 集合点 / 阶段性同步点            |
   */
- */
+// */
 public class CyclicBarrierDemo {
     public static void main(String[] args) {
         int numberOfPlayers = 3;
